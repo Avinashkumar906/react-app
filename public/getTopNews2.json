@@ -1,0 +1,110 @@
+{
+    "status": "ok",
+    "totalResults": 38,
+    "articles": [
+        {
+            "source": {
+                "id": null,
+                "name": "India Today"
+            },
+            "author": "Reuters",
+            "title": "Denmark's Prime Minister Mette Frederiksen attacked in public, man arrested - India Today",
+            "description": "Danish Prime Minister Mette Frederiksen was hit by a man at Copenhagen square According to her office the attacker had been arrested by the police after the incident",
+            "url": "https://www.indiatoday.in/world/story/denmarks-prime-minister-frederiksen-attacked-in-copenhagen-man-arrested-2550543-2024-06-08",
+            "urlToImage": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202406/denmarks-prime-minister-mette-frederiksen-083403120-16x9_0.jpg?VersionId=ASJfNInHQLwU0W9Gkzo7SWuBb5AA7K0a",
+            "publishedAt": "2024-06-08T00:41:06Z",
+            "content": "Denmark's Prime Minister Mette Frederiksen walked away following an assault by a man in central Copenhagen on Friday and had no outward signs of harm, a local resident told Reuters.\r\n\"Prime Minister … [+909 chars]"
+        },
+        {
+            "source": {
+                "id": "techcrunch",
+                "name": "TechCrunch"
+            },
+            "author": "Aria Alamalhodaei",
+            "title": "NASA puts $10M down on Mars sample return proposals from Blue Origin, SpaceX and others - TechCrunch",
+            "description": "It turns out the space industry has a lot of ideas on how to improve NASA’s $11 billion, 15-year plan to collect and return samples from Mars. Seven of",
+            "url": "https://techcrunch.com/2024/06/07/nasa-puts-10m-down-on-mars-sample-return-proposals-from-blue-origin-spacex-and-others/",
+            "urlToImage": "https://techcrunch.com/wp-content/uploads/2024/04/msr-lander.webp?resize=1200,665",
+            "publishedAt": "2024-06-07T22:10:58Z",
+            "content": "It turns out the space industry has a lot of ideas on how to improve NASAs $11 billion, 15-year plan to collect and return samples from Mars. Seven of these proposals have caught the agencys attentio… [+2674 chars]"
+        },
+        {
+            "source": {
+                "id": "the-times-of-india",
+                "name": "The Times of India"
+            },
+            "author": "TOI Entertainment Desk",
+            "title": "Munjya box office collection day 1: Sharvari Wagh, Abhay Verma starrer makes an impressive debut, earns c - TOI Etimes",
+            "description": "The horror-comedy Munjya starring Sharvari Wagh, Abhay Verma, Mona Singh, has made an impressive debut at the box office, with collections estimated t",
+            "url": "https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/box-office/munjya-box-office-collection-day-1-sharvari-wagh-abhay-verma-starrer-makes-an-impressive-debut-earns-close-to-rs-4-crore/articleshow/110806506.cms",
+            "urlToImage": "https://static.toiimg.com/thumb/msid-110806493,width-1070,height-580,imgsize-65204,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+            "publishedAt": "2024-06-07T21:20:00Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Financial Express"
+            },
+            "author": "The Financial Express",
+            "title": "Meet Nara Bhuvaneswari, wife of Chandrababu Naidu – Here’s how her net worth increased by Rs 579 crore in 5 days; Know about TDP leader, his love story, and more - The Financial Express",
+            "description": null,
+            "url": "https://www.financialexpress.com/life/lifestyle-meet-nara-bhuvaneshwari-wife-of-chandrababu-naidu-heres-how-her-net-worth-increased-by-rs-579-crore-in-5-days-know-about-tdp-leader-his-love-story-and-more-3518241/",
+            "urlToImage": null,
+            "publishedAt": "2024-06-07T19:38:55Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Livemint"
+            },
+            "author": "Uday Bhatia",
+            "title": "'Hit Man' review: A sexy, funny delight - Mint",
+            "description": "Glen Powell and Adria Arjona are electric together in Richard Linklater’s sparkling hitman comedy",
+            "url": "https://www.livemint.com/mint-lounge/art-and-culture/hit-man-review-film-glen-powell-adria-arjona-richard-linklater-11717830320428.html",
+            "urlToImage": "https://www.livemint.com/lm-img/img/2024/06/08/1600x900/hitman1_1717830666062_1717830678663.jpg",
+            "publishedAt": "2024-06-07T19:12:11Z",
+            "content": "\"You only get one first impression,\" Glen Powell says in Richard Linklater's Hit Man (2023). For many, the first impression of Powell was as the cocky pilot in Top Gun: Maverick (2022). The success o… [+4577 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "YouTube"
+            },
+            "author": null,
+            "title": "Astronauts Welcome Starliner Crew to International Space Station | Vantage with Palki Sharma - Firstpost",
+            "description": "Astronauts Welcome Starliner Crew to International Space Station | Vantage with Palki SharmaBoeing's 2-NASA astronaut crew for Starliner safely docked in the...",
+            "url": "https://www.youtube.com/watch?v=Bf_qBcZ5b34",
+            "urlToImage": "https://i.ytimg.com/vi/Bf_qBcZ5b34/maxresdefault.jpg",
+            "publishedAt": "2024-06-07T18:24:33Z",
+            "content": null
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "[Removed]"
+            },
+            "author": null,
+            "title": "[Removed]",
+            "description": "[Removed]",
+            "url": "https://removed.com",
+            "urlToImage": null,
+            "publishedAt": "1970-01-01T00:00:00Z",
+            "content": "[Removed]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Hindustan Times"
+            },
+            "author": "Vandana Ramnani",
+            "title": "RBI Policy review: Unchanged interest rates expected to have a stabilizing effect on the real estate sector, say experts - Hindustan Times",
+            "description": "Credai urges RBI to reduce repo rates in the upcoming monetary policy to reduce home loan interest rates and stimulate housing demand",
+            "url": "https://www.hindustantimes.com/real-estate/rbi-policy-review-unchanged-interest-rates-expected-to-have-a-stabilizing-effect-on-the-real-estate-sector-say-experts-101717752397968.html",
+            "urlToImage": "https://www.hindustantimes.com/ht-img/img/2024/06/07/1600x900/ANI-RBI-policy-rates-real-estate_1717753009347_1717753009532.jpg",
+            "publishedAt": "2024-06-07T09:55:48Z",
+            "content": "As expected, the Reserve Bank of India (RBI) left its key interest rates unchanged on June 7. This, say real estate experts, augurs well for homebuyers and developers, as borrowing costs won't witnes… [+3602 chars]"
+        }
+    ]
+}
