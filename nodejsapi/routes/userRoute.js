@@ -43,10 +43,10 @@ route.post('/signup', signupValidation, async (req, res) => {
                 res.status(200).send({ status: "success", token: token })
             }
         } catch (error) {
-            res.status(400).send({ status: 'failed' })
+            res.status(400).send({ status: 'error' })
         }
     } else {
-        res.status(400).send({ status: 'failed', data: validation.errors })
+        res.status(400).send({ status: 'error', data: validation.errors })
     }
 })
 
@@ -66,7 +66,7 @@ route.post('/signin', signInValidation, async (req, res) => {
             res.status(400).send({ message: 'please user correct email and password.' })
         }
     } else {
-        res.status(400).send({ status: 'failed' })
+        res.status(400).send({ status: 'error' })
     }
 })
 

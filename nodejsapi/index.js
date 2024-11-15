@@ -5,11 +5,12 @@ const connect = require('./database')
 if(!process.env.PORT){
     require('dotenv').config()
 }
+app.use(require('cors')());
 // json parser for request
 app.use(express.json());
-app.use(require('cors'));
 
 // all approutes middleware
+app.get('/test', (req,res) => res.send({m:'hellow'}) )
 app.use('/user', require('./routes/userRoute'))
 app.use('/note', require('./routes/noteRoute'))
 

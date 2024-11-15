@@ -22,7 +22,7 @@ route.post('/addNote', isAuthenticatedUser, noteValidation, async (req, res) => 
     } else {
         const note = new Note({ ...req.body, user: req.user._id })
         const result = await note.save()
-        res.status(200).send({ message: 'success', result });
+        res.status(200).send({ status: 'success', result });
     }
 })
 
@@ -34,13 +34,21 @@ route.put('/updateNote/:_id', isAuthenticatedUser, noteValidation, async (req, r
         const body = { ...req.body, user: req.user._id };
         delete body._id; //removing old id.
         const result = await Note.updateOne({ _id: req.params._id, user: req.user._id }, body);
-        res.status(200).send({ message: 'success', result });
+        if(result.modifiedCount){
+            res.status(200).send({ status: 'success', result });
+        } else {
+            res.status(200).send({ status: 'error', result });
+        }
     }
 })
 
 route.delete('/deleteNote/:_id', isAuthenticatedUser, async (req, res) => {
     const result = await Note.deleteOne({ _id: req.params._id, user: req.user._id }, { ...req.body, user: req.user._id }, { upsert: true })
-    res.status(200).send({ message: 'success', result });
+    if(result.deletedCount){
+        res.status(200).send({ status: 'success', result });
+    } else {
+        res.status(200).send({ status: 'error', result });
+    }
 })
 
 module.exports = route;

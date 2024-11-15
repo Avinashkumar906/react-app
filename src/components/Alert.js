@@ -1,8 +1,9 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext} from 'react'
+import alertContext from '../context/alert/alertContext';
 
 function Alert() {
-  const [alert, setAlert] = useState({ type: 'warning', message: 'I am warning' });
-  const updateAlert = (data) => setAlert({type:data?.type,message:data?.message});
+  const {alert,updateAlert} = useContext(alertContext)
+  // const updateAlert = (data) => setAlert({type:data?.type,message:data?.message});
   
   return (
     <Fragment>

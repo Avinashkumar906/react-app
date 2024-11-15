@@ -1,40 +1,53 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import noteContext from '../context/note/noteContext'
 
-function AddNote() {
-  const {addNote} = useContext(noteContext)
-  const [note, setNote] = useState({title:'',description:'',tag:''});
+function AddNote(props) {
+  const { prepopulate } = props;
+  const { addNote, editNote } = useContext(noteContext)
+  const closeRef = useRef(null)
+  const [note, setNote] = useState({
+    title: prepopulate?.title || '',
+    description: prepopulate?.description || '',
+    tag: prepopulate?.tag || '',
+  });
 
   const handleChange = (target) => {
-    setNote({...note,[target.name]:target.value})
+    setNote({ ...note, [target.name]: target.value })
   }
 
   const onSubmit = () => {
-    addNote(note);
+    if (prepopulate){
+      editNote(prepopulate._id, note)
+      closeRef.current.click()
+    }
+    else{
+      addNote(note);
+    }
   }
 
   return (
     <div>
-      <h2>Add note</h2>
-      <div>
+      {/* <h4>{prepopulate?'Update':'Add'} Note</h4> */}
+      <div className='py-4'>
         <form>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Note title</label>
-            <input onChange={(event) => handleChange(event.target)} type="text" className="form-control" id="title" name="title"/>
+            <input value={note.title} onChange={(event) => handleChange(event.target)} type="text" className="form-control" id="title" name="title" />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
-            <input type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="description" name="description"/>
+            <input value={note.description} type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="description" name="description" />
           </div>
           <div className="mb-3">
             <label htmlFor="tag" className="form-label">Tag</label>
-            <input type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="tag" name="tag"/>
+            <input value={note.tag} type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="tag" name="tag" />
           </div>
-          <button type="button" className="btn btn-primary" onClick={onSubmit}>Submit</button>
+          <button type="button" ref={ closeRef } className="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+          <button type="button" className="btn btn-primary" onClick={onSubmit}>{prepopulate ? 'Update' : 'Add'} Note</button>
         </form>
       </div>
     </div>
   )
 }
 
-export default AddNote
+export default AddNote 

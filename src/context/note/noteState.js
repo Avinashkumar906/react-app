@@ -1,59 +1,54 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import noteContext from "./noteContext"
-
-const mockNotes = [
-  {
-    "_id": "67175042fcc1a735b53d99a7",
-    "user": "67175000fcc1a735b53d99a0",
-    "title": "this is first",
-    "description": "this is description of 2nd note",
-    "timestamp": "2024-10-22T07:09:28.309Z",
-    "tag": "general",
-    "__v": 0
-  },
-  {
-    "_id": "67175042fcc1a735b53d99a8",
-    "user": "67175000fcc1a735b53d99a0",
-    "title": "this is second",
-    "description": "this is description of 2nd note",
-    "timestamp": "2024-10-22T07:09:28.309Z",
-    "tag": "general",
-    "__v": 0
-  }
-]
+import fetchApi from "../../http/fetch"
+import alertContext from "../alert/alertContext"
 
 const NoteState = (props) => {
-  const [notes, setNotes] = useState(mockNotes)
-  const fetchApi = (url, method = 'GET', payload = '') => {
-    const request = {method, headers: {
-        "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJBdmluYSIsImxhc3ROYW1lIjoiTmFzaCIsImVtYWlsIjoiYXZpbmFzaGt1bWFyNUBnbWFpbC5jb20iLCJwaG9uZSI6Ijg4MDIzMjMyMzEiLCJfaWQiOiI2NzE3NTAwMGZjYzFhNzM1YjUzZDk5YTAiLCJfX3YiOjAsImlhdCI6MTcyOTU4MTA1Nn0.kIDL-Wr5pfG_OUBvnWYML1xsq_l4MdOfRIdJJJZrDQ8"
-      }
-    }
-    if(method !== 'GET')
-      request.body = JSON.stringify(payload)
-    
-    return fetch(`http://localhost:8080/${url}`, request)
-  }
-
+  const [notes, setNotes] = useState([])
+  const { updateAlert } = useContext(alertContext);
+  // FETCH ALL NOTES
   const fetchNotes = async () => {
     const response = await fetchApi('note/getAll');
-    const notes = await response.json()
-    console.log(notes)
+    setNotes(await response.json())
   }
-  // Add note APIcall
-  const addNote = (note) => {
-    setNotes(notes.concat(note));
+  // Add nNote
+  const addNote = async (note) => {
+    const response = await fetchApi('note/addNote', 'POST', note);
+    const json = await response.json()
+    if(json.status === 'success'){
+      setNotes(notes.concat(json.result));
+      updateAlert({type:'primary',message:'Note added successfully!'})
+    }
+    else{
+      updateAlert({type:'warning',message:'Some error occured'})
+    }
   }
   // delete note APIcall
-  const delNote = (id) => {
-    const note = notes.filter(f => f._id !== id);
-    setNotes(note)
+  const delNote = async (id) => {
+    const response = await fetchApi(`note/deleteNote/${id}`, 'DELETE');
+    const json = await response.json();
+    if(json.status === 'success'){
+      const note = notes.filter(f => f._id !== id);
+      setNotes(note)
+      updateAlert({type:'primary',message:'Note deleted successfully!'})
+    } else{
+      // console.log(`some error ${json.errors?.errors}`)
+      updateAlert({type:'warning',message:'Some error occured'})
+    }
   }
 
-  const editNote = (id, note) => {
-    const filteredNotes = notes.filter(f => f._id !== id);
-    setNotes(filteredNotes.concat(note));
+  const editNote = async (_id, note) => {
+    // console.log(id,note)note/updateNote/67174835c583f3ef3db5c675
+    const response = await fetchApi(`note/updateNote/${_id}`, 'PUT', note);
+    const json = await response.json();
+    if(json.status === 'success'){
+      const filteredNotes = notes.filter(f => f._id !== _id);
+      setNotes(filteredNotes.concat({...note,_id}));
+      updateAlert({type:'primary',message:'Note updated successfully!'})
+    } else{
+      // console.log(`some error ${json.errors?.errors}`)
+      updateAlert({type:'warning',message:'Some error occured'})
+    }
   }
 
   return (
