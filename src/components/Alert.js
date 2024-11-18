@@ -1,9 +1,11 @@
-import React, { Fragment, useContext} from 'react'
-import alertContext from '../context/alert/alertContext';
+import React, { Fragment } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { removeAlert } from '../store/action/alertAction';
 
 function Alert() {
-  const {alert,updateAlert} = useContext(alertContext)
-  // const updateAlert = (data) => setAlert({type:data?.type,message:data?.message});
+  const dispatch = useDispatch()
+  const alert = useSelector(store => store.alert)
+  const updateAlert = (data) => dispatch(removeAlert());
   
   return (
     <Fragment>

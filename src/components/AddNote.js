@@ -1,9 +1,12 @@
-import React, { useContext, useRef, useState } from 'react'
-import noteContext from '../context/note/noteContext'
+import React, { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { addNote, editNote } from '../store/action/noteAction';
+// import noteContext from '../context/note/noteContext'
 
 function AddNote(props) {
   const { prepopulate } = props;
-  const { addNote, editNote } = useContext(noteContext)
+  const dispatch = useDispatch();
+  // const { addNote, editNote } = useContext(noteContext)
   const closeRef = useRef(null)
   const [note, setNote] = useState({
     title: prepopulate?.title || '',
@@ -17,11 +20,11 @@ function AddNote(props) {
 
   const onSubmit = () => {
     if (prepopulate){
-      editNote(prepopulate._id, note)
+      dispatch(editNote(prepopulate._id, note))
       closeRef.current.click()
     }
     else{
-      addNote(note);
+      dispatch(addNote(note))
     }
   }
 

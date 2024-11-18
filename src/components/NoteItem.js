@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
-import noteContext from '../context/note/noteContext';
+import React from 'react'
+import { useDispatch } from 'react-redux';
+import { delNote } from '../store/action/noteAction';
 
 function NoteItem(props) {
     const { note, updateHandler } = props;
-    const { delNote } = useContext(noteContext)
+    const dispatch = useDispatch();
+    // const { delNote } = useContext(noteContext)
 
-    const onDelete = (id) => delNote(id)
+    const onDelete = (id) => dispatch(delNote(id))
 
     return (
         <div className='col-sm-6 col-md-4 col-lg-3 mb-4'>

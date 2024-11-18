@@ -1,11 +1,14 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import noteContext from '../context/note/noteContext';
+import React, { useEffect, useRef, useState } from 'react'
 import NoteItem from './NoteItem';
 import NoteModal from './NoteModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAll } from '../store/action/noteAction';
 
 function Notes() {
+  const dispatch = useDispatch();
+  const notes = useSelector((state) => state.notes);
+
   const [editNote, setEditNote] = useState(null)
-  const { notes, fetchNotes }  = useContext(noteContext)
   const modalButton = useRef(null)
 
   const updateHandler = (note) => {
@@ -15,7 +18,7 @@ function Notes() {
   const onCloseModal = () => setEditNote(null);
 
   useEffect(() => {
-    fetchNotes()
+    dispatch(fetchAll())
     // eslint-disable-next-line
   }, [])
   
@@ -26,9 +29,9 @@ function Notes() {
       </button>
       <NoteModal note={editNote} onClose={onCloseModal}/>
       <h2>Your notes</h2>
-      {!notes.length && <p>No notes available! </p>}
+      {!notes?.length && <p>No notes available! </p>}
       <div className='row'>
-        {notes.map((note,index)=><NoteItem key={note._id + index} note={note} updateHandler={updateHandler} />)}
+        {notes?.map((note,index)=><NoteItem key={note._id + index} note={note} updateHandler={updateHandler} />)}
       </div>
     </div>
   )
