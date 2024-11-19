@@ -11,12 +11,13 @@ app.use(require('cors')());
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname,'public')))
-app.get('/in*',(req,res) => res.sendFile(path.join(__dirname,'public','index.html')))
 
 // all approutes middleware
-app.get('/test', (req,res) => res.send({m:'hellow'}) )
 app.use('/user', require('./routes/userRoute'))
 app.use('/note', require('./routes/noteRoute'))
+
+// wildcard route
+app.get('/*',(req,res) => res.sendFile(path.join(__dirname,'public','index.html')))
 
 app.listen(process.env.PORT || 3001, () => {
     connect()
