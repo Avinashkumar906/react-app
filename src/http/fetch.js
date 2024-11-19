@@ -9,7 +9,7 @@ const fetchApi = (url, method = 'GET', payload = {}) => {
     if (method !== 'GET')
         request.body = JSON.stringify(payload)
 
-    return fetch(`http://localhost:8080/${url}`, request)
+    return fetch(`./${url}`, request)
 }
 
 export default fetchApi;
