@@ -9,6 +9,9 @@ app.use(require('cors')());
 // json parser for request
 app.use(express.json());
 
+app.use(express.static('./public'))
+// app.use('/application',(req,res) => res.sendFile(__dirname+'/public/index.html'))
+
 // all approutes middleware
 app.get('/test', (req,res) => res.send({m:'hellow'}) )
 app.use('/user', require('./routes/userRoute'))
