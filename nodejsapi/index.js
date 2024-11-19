@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express()
 const connect = require('./database')
+const path = require('path')
 
 if(!process.env.PORT){
     require('dotenv').config()
@@ -9,8 +10,8 @@ app.use(require('cors')());
 // json parser for request
 app.use(express.json());
 
-app.use(express.static('./public'))
-// app.use('/application',(req,res) => res.sendFile(__dirname+'/public/index.html'))
+app.use('/public',express.static(path.join(__dirname,'public')))
+// app.get('/app*',(req,res) => res.sendFile(path.join(__dirname,'public','index.html')))
 
 // all approutes middleware
 app.get('/test', (req,res) => res.send({m:'hellow'}) )

@@ -7,8 +7,10 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!localStorage.getItem('token'))
-      navigate('/signin')
+    if(!localStorage.getItem('token')){
+      console.log('NO user found')
+      navigate('/')
+    }
     // eslint-disable-next-line 
   }, [])
   return (

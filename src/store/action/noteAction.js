@@ -5,8 +5,10 @@ export const fetchAll = () => {
     return async (dispatch) => {
         try {
             const response = await (await fetchApi('note/getAll')).json();
-            dispatch({ type: 'GET_ALL', payload: response })
-            dispatch(setAlert({type:'primary',message:'All notes Fetched successfully'},3000))
+            if(response){
+                dispatch(setAlert({type:'primary',message:'All notes Fetched successfully'},3000))
+                dispatch({ type: 'GET_ALL', payload: response })
+            }
         } catch (error) {
             dispatch(setAlert({type:'danger',message:'Something went wrong!'}))
         }
