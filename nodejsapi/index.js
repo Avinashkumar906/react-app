@@ -10,8 +10,8 @@ app.use(require('cors')());
 // json parser for request
 app.use(express.json());
 
-app.use('/public',express.static(path.join(__dirname,'public')))
-// app.get('/app*',(req,res) => res.sendFile(path.join(__dirname,'public','index.html')))
+app.use(express.static(path.join(__dirname,'public')))
+app.get('/in*',(req,res) => res.sendFile(path.join(__dirname,'public','index.html')))
 
 // all approutes middleware
 app.get('/test', (req,res) => res.send({m:'hellow'}) )
