@@ -9,7 +9,7 @@ const fetchApi = (url, method = 'GET', payload = {}) => {
     if (method !== 'GET')
         request.body = JSON.stringify(payload)
 
-    return fetch(`./${url}`, request)
+    return fetch(location.origin + '/' + url, request)
 }
 
 export default fetchApi;
