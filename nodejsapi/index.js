@@ -10,15 +10,26 @@ app.use(require('cors')());
 // json parser for request
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname,'../build')))
+// This code makes sure that any request that does not matches a static file
+// in the build folder, will just serve index.html. Client side routing is
+// going to make sure that the correct content will be loaded.
 
 // all approutes middleware
 app.use('/user', require('./routes/userRoute'))
 app.use('/note', require('./routes/noteRoute'))
 
-app.use((req, res) => {
-    res.status(200).send('Hello, world!');
+// serving react app for all routes except api's route
+app.use((req, res, next) => {
+    if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
+        next();
+    } else {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    }
 });
+app.use(express.static(path.join(__dirname,'../build')))
 
 app.listen(process.env.PORT || 3001, () => {
     connect()
