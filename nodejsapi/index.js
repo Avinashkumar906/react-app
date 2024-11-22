@@ -10,14 +10,15 @@ app.use(require('cors')());
 // json parser for request
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'../build')))
 
 // all approutes middleware
 app.use('/user', require('./routes/userRoute'))
 app.use('/note', require('./routes/noteRoute'))
 
-// wildcard route
-app.get('/*',(req,res) => res.sendFile(path.join(__dirname,'public','index.html')))
+app.use((req, res) => {
+    res.status(200).send('Hello, world!');
+});
 
 app.listen(process.env.PORT || 3001, () => {
     connect()
