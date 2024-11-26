@@ -1,6 +1,6 @@
 import {legacy_createStore, applyMiddleware} from 'redux'
 import {thunk} from 'redux-thunk';
-import { reducers } from './reducer';
+import { reducers } from './reducer/combineReducer';
 
 const initialState = { notes:[] }
 

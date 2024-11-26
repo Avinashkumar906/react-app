@@ -11,7 +11,7 @@ function Alert() {
     <Fragment>
       { 
         alert.message ? 
-          (<div className={`alert alert-${alert.type} alert-dismissible fade show mb-0`} role="alert">
+          (<div className={`alert alert-${alert.type} alert-dismissible fade show mb-0`} style={{'position':'absolute','left':0,'right':0}} role="alert">
             {alert.message}
             <button type="button" onClick={() => updateAlert({message:''})} className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>

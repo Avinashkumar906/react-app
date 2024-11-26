@@ -32,7 +32,8 @@ function AddNote(props) {
     <div>
       {/* <h4>{prepopulate?'Update':'Add'} Note</h4> */}
       <div className='py-4'>
-        <form>
+        <form className='my-2'>
+          <h2>{prepopulate ? 'Update' : 'Add'} Note</h2>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Note title</label>
             <input value={note.title} onChange={(event) => handleChange(event.target)} type="text" className="form-control" id="title" name="title" />
@@ -46,7 +47,7 @@ function AddNote(props) {
             <input value={note.tag} type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="tag" name="tag" />
           </div>
           <button type="button" ref={ closeRef } className="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
-          <button type="button" className="btn btn-primary" onClick={onSubmit}>{prepopulate ? 'Update' : 'Add'} Note</button>
+          <button type="button" className="btn btn-primary" onClick={onSubmit}>Submit</button>
         </form>
       </div>
     </div>

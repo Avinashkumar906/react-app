@@ -40,7 +40,7 @@ route.post('/signup', signupValidation, async (req, res) => {
             const user = await new User(tempUser).save()
             if (user) {
                 const token = jwt.sign(user.toJSON(), process.env.JWTSEC);
-                res.status(200).send({ status: "success", token: token })
+                res.status(200).send({ status: "success", token: token , user:user})
             }
         } catch (error) {
             res.status(400).send({ status: 'error' })
@@ -61,7 +61,7 @@ route.post('/signin', signInValidation, async (req, res) => {
                 return res.status(400).send({ message: 'please user correct email and password.' })
             }
             const token = jwt.sign(user.toJSON(), process.env.JWTSEC);
-            res.status(200).send({ status: "success", token: token })
+            res.status(200).send({ status: "success", token: token, user:user })
         } else {
             res.status(400).send({ message: 'please user correct email and password.' })
         }
@@ -70,7 +70,7 @@ route.post('/signin', signInValidation, async (req, res) => {
     }
 })
 
-route.post('/getUser',isAuthenticatedUser ,  async (req, res) => {
+route.post('/getUser', isAuthenticatedUser ,  async (req, res) => {
     const userID = req.user._id;
     try {
         const user = await User.findById(userID);

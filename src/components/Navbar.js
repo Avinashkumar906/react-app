@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom'
+import { userLogout } from '../store/action/userAction';
 
 
 function Navbar() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
   const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!token) {
-      navigate('/login')
-    }
-    // eslint-disable-next-line 
-  }, [token])
-
+  const dispatch = useDispatch();
+  const {user} = useSelector(store => store.user)
+  // useEffect(() => {
+  //   console.log("User changed",user)
+  // }, [user])
+  
   return (
     <nav className="navbar navbar-dark navbar-expand-md bg-dark">
       <div className="container-fluid">
@@ -31,9 +29,9 @@ function Navbar() {
             </li>
           </ul>
           {
-            token ?
+            user?.email ?
               <div className="d-flex">
-                <button type='button' onClick={() => setToken(null)} className="btn btn-outline-light me-2">Sign out</button>
+                <button type='button' onClick={() => dispatch(userLogout())} className="btn btn-outline-light me-2">Sign out</button>
               </div> :
               <div className="d-flex">
                 <Link className="btn btn-outline-light me-2" to="/login">Sign In</Link>

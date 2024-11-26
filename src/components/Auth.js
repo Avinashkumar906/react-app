@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import fetchApi from '../http/fetch';
-import alertContext from '../context/alert/alertContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin, userSignup } from '../store/action/userAction';
 
 const Auth = () => {
   const [credentials, setCredentials] = useState({email:'',password:'',firstName:''});
   const location = useLocation();
+  const {user} = useSelector(store => store.user)
   const navigate = useNavigate();
-  const {updateAlert} = useContext(alertContext);
+  const dispatch = useDispatch();
 
   const onChange = (target) => {
     setCredentials({...credentials,[target.name]:target.value})
@@ -15,32 +16,21 @@ const Auth = () => {
 
   const submitForm = async (event) =>{
     event.preventDefault();
-    if(location.pathname === '/login'){
-      const response = await (await fetchApi('user/signin','POST',credentials)).json();
-      if(response.status === 'success'){
-        localStorage.setItem('token',response.token);
-        navigate('/');
-        updateAlert({type:'success',message:'Authenticated successfully!'})
-      } else {
-        updateAlert({type:'alert',message:'Please enter valid credentials'})
-      }
-    }
-    else{
-      const response = await (await fetchApi('user/signup','POST',credentials)).json();
-      if(response.status === 'success'){
-        localStorage.setItem('token',response.token);
-        navigate('/');
-        updateAlert({type:'success',message:'Registered successfully!'})
-      } else{
-        updateAlert({type:'alert',message:'Some error occured, Please try with different credencials!'})
-      }
-    }
+    (location.pathname === '/login') ? dispatch(userLogin(credentials)) : dispatch(userSignup(credentials));
   }
+
+  useEffect(() => {
+    if(user?.email && user?.firstName)
+      navigate('/')
+  }, [user,navigate])
+  
+
   return (
     <div>
       <div className='row justify-content-center'>
         <div className='col-5'>
           <form className='py-4' onSubmit={(e)=>submitForm(e)}>
+            <h2 className='mb-2'>{location.pathname === '/login' ? 'Sign in' : 'Register'}</h2>
             {
               location.pathname === '/signup' &&
               <div className="form-group mb-2">

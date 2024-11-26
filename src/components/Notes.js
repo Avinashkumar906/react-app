@@ -31,7 +31,7 @@ function Notes() {
       <h2>Your notes</h2>
       {!notes?.length && <p>No notes available! </p>}
       <div className='row'>
-        {notes?.map((note,index)=><NoteItem key={note._id + index} note={note} updateHandler={updateHandler} />)}
+        { notes && notes.map((note,index)=><NoteItem key={note._id + index} note={note} updateHandler={updateHandler} />)}
       </div>
     </div>
   )
