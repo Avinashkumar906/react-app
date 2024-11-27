@@ -4,7 +4,7 @@ import { setAlert } from "./alertAction";
 export const userLogin = (credentials) => {
     return async (dispatch) => {
         try {
-            const response = await (await fetchApi('user/signin','POST',credentials)).json();
+            const response = (await fetchApi('user/signin','POST',credentials)).data;
             if(response.status === 'success'){
                 dispatch({ type: 'LOGIN', payload: response })
                 dispatch(setAlert({type:'primary',message:'User Loggend in successfully.'},3000))
@@ -20,7 +20,7 @@ export const userLogin = (credentials) => {
 export const userSignup = (credentials) => {
     return async (dispatch) => {
         try {
-            const response = await (await fetchApi('user/signup','POST',credentials)).json();
+            const response = (await fetchApi('user/signup','POST',credentials)).data;
             if(response.status === 'success'){
                 dispatch({ type: 'LOGIN', payload: response })
                 dispatch(setAlert({type:'primary',message:'User Loggend in successfully.'},3000))

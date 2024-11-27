@@ -1,8 +1,9 @@
 // import { useNavigate } from 'react-router-dom'
 import AddNote from './AddNote'
-import Notes from './Notes'
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
+
+const LazyNotes = lazy(() =>import('./Notes')); //lazy loading..
 
 function Home() {
   // const navigate = useNavigate();
@@ -20,7 +21,9 @@ function Home() {
       <h2 className='text-center py-3'>Your notes</h2>
       <div className='row'>
         <AddNote/>
-        <Notes></Notes>
+        <Suspense fallback={<div>loading....</div>}>
+          <LazyNotes/>
+        </Suspense>
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import { setAlert } from "./alertAction";
 export const fetchAll = () => {
     return async (dispatch) => {
         try {
-            const response = await (await fetchApi('note/getAll')).json();
+            const response = (await fetchApi('note/getAll')).data;
             if(response){
                 dispatch(setAlert({type:'primary',message:'All notes Fetched successfully'},3000))
                 dispatch({ type: 'GET_ALL', payload: response })
@@ -19,7 +19,7 @@ export const fetchAll = () => {
 export const addNote = (note) => {
     return async (dispatch) => {
         try {
-            const response = await (await fetchApi('note/addNote', 'POST', note)).json();
+            const response = (await fetchApi('note/addNote', 'POST', note)).data;
             if (response.status === 'success') {
                 dispatch({ type: 'ADD_NOTE', payload: response.result });
                 dispatch(setAlert({type:'primary',message:'Note added successfully!'},3000))
@@ -37,7 +37,7 @@ export const addNote = (note) => {
 export const delNote = (id) => {
     return async (dispatch) => {
         try {
-            const response = await (await fetchApi(`note/deleteNote/${id}`, 'DELETE')).json();
+            const response = (await fetchApi(`note/deleteNote/${id}`, 'DELETE')).data;
             if (response.status === 'success') {
                 dispatch({ type: 'DELETE_ONE', payload: {id} });
                 dispatch(setAlert({type:'primary',message:'Note deleted successfully!'},3000))
@@ -53,7 +53,7 @@ export const delNote = (id) => {
 export const editNote = (id, note) => {
     return async (dispatch) => {
         try {
-            const response = await (await fetchApi(`note/updateNote/${id}`, 'PUT', note)).json();
+            const response = (await fetchApi(`note/updateNote/${id}`, 'PUT', note)).data;
             if (response.status === 'success') {
                 dispatch({ type: 'UPDATE_ONE', payload: {id, note} });
                 dispatch(setAlert({type:'primary',message:'Note updated successfully!'},3000))
