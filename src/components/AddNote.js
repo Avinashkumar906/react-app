@@ -29,7 +29,7 @@ function AddNote(props) {
   }
 
   return (
-    <div className='col-sm-6 col-md-4 col-lg-3 mb-4'>
+    <div className={!prepopulate && 'col-sm-6 col-md-4 col-lg-3 mb-4'}>
       {/* <h4>{prepopulate?'Update':'Add'} Note</h4> */}
       <div className="card p-2">
         <form className='my-2'>
