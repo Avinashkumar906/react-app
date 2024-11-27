@@ -17,8 +17,11 @@ function Home() {
   }, [user])
   return (
     <div className='container'>
-      <AddNote/>
-      <Notes></Notes>
+      <h2 className='text-center py-3'>Your notes</h2>
+      <div className='row'>
+        <AddNote/>
+        <Notes></Notes>
+      </div>
     </div>
   )
 }

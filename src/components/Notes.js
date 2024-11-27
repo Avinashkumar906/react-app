@@ -23,17 +23,22 @@ function Notes() {
   }, [])
   
   return (
-    <div className='py-4'>
+    <>
+      {!notes?.length && 
+        <div  className='col-sm-6 col-md-4 col-lg-3 mb-4'>
+          <div className='card p-2' style={{height:'100%',alignItems:'center',justifyContent:'center'}}>
+            <h3 className='text-center'><br/> Please add some notes!</h3>
+          </div>
+        </div>
+      }
+      { notes && notes.map((note,index) =>
+        <NoteItem key={note._id + index} note={note} updateHandler={updateHandler} />
+      )}
       <button ref={modalButton} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Launch static backdrop modal
       </button>
       <NoteModal note={editNote} onClose={onCloseModal}/>
-      <h2>Your notes</h2>
-      {!notes?.length && <p>No notes available! </p>}
-      <div className='row'>
-        { notes && notes.map((note,index)=><NoteItem key={note._id + index} note={note} updateHandler={updateHandler} />)}
-      </div>
-    </div>
+    </>
   )
 }
 

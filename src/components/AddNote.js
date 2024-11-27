@@ -29,25 +29,27 @@ function AddNote(props) {
   }
 
   return (
-    <div>
+    <div className='col-sm-6 col-md-4 col-lg-3 mb-4'>
       {/* <h4>{prepopulate?'Update':'Add'} Note</h4> */}
-      <div className='py-4'>
+      <div className="card p-2">
         <form className='my-2'>
-          <h2>{prepopulate ? 'Update' : 'Add'} Note</h2>
-          <div className="mb-3">
+          {/* <h3>{prepopulate ? 'Update' : 'Add'} Note</h3> */}
+          <div className="mb-1">
             <label htmlFor="title" className="form-label">Note title</label>
             <input value={note.title} onChange={(event) => handleChange(event.target)} type="text" className="form-control" id="title" name="title" />
           </div>
-          <div className="mb-3">
+          <div className="mb-1">
             <label htmlFor="description" className="form-label">Description</label>
             <input value={note.description} type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="description" name="description" />
           </div>
-          <div className="mb-3">
+          <div className="mb-1">
             <label htmlFor="tag" className="form-label">Tag</label>
             <input value={note.tag} type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="tag" name="tag" />
           </div>
-          <button type="button" ref={ closeRef } className="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
-          <button type="button" className="btn btn-primary" onClick={onSubmit}>Submit</button>
+          <div className='text-center pt-2'>
+            <button type="button" ref={ closeRef } className="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-success px-4" onClick={onSubmit}>{prepopulate?'Update':' Add '} </button>
+          </div>
         </form>
       </div>
     </div>
