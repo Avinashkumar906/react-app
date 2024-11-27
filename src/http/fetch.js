@@ -6,7 +6,7 @@ const http = axios.create({
     baseURL:(process.env.PROD ? window.location.origin : baseUrl),
     headers:{
         // "Content-Type": "application/json",
-        // "auth-token": localStorage.getItem('token')
+        "auth-token": localStorage.getItem('token') || ''
     }
 })
 // will move below to separate file
