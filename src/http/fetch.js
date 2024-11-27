@@ -5,7 +5,7 @@ const baseUrl = 'http://localhost:8081';
 const http = axios.create({
     baseURL:(process.env.PROD ? window.location.origin : baseUrl),
     headers:{
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         // "auth-token": localStorage.getItem('token')
     }
 })
