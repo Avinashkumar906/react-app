@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom'
 import { userLogout } from '../store/action/userAction';
@@ -6,8 +5,8 @@ import { userLogout } from '../store/action/userAction';
 
 function Navbar() {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const {user} = useSelector(store => store.user)
+  const dispatch = useDispatch<any>();
+  const {user} = useSelector((store:any) => store.user)
   // useEffect(() => {
   //   console.log("User changed",user)
   // }, [user])

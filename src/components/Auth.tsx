@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin, userSignup } from '../store/action/userAction';
@@ -6,15 +6,15 @@ import { userLogin, userSignup } from '../store/action/userAction';
 const Auth = () => {
   const [credentials, setCredentials] = useState({email:'',password:'',firstName:''});
   const location = useLocation();
-  const {user} = useSelector(store => store.user)
+  const {user} = useSelector((store:any) => store.user)
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
-  const onChange = (target) => {
+  const onChange = (target:HTMLInputElement) => {
     setCredentials({...credentials,[target.name]:target.value})
   }
 
-  const submitForm = async (event) =>{
+  const submitForm = async (event:any) =>{
     event.preventDefault();
     (location.pathname === '/login') ? dispatch(userLogin(credentials)) : dispatch(userSignup(credentials));
   }

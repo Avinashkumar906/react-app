@@ -2,12 +2,11 @@
 import AddNote from './AddNote'
 import { useEffect, lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-
 const LazyNotes = lazy(() =>import('./Notes')); //lazy loading..
 
 function Home() {
   // const navigate = useNavigate();
-  const {user} = useSelector(store => store.user)
+  const {user} = useSelector((store:any) => store.user)
 
   useEffect(() => {
     if(!user){

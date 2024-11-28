@@ -2,7 +2,7 @@ import fetchApi from "../../http/fetch";
 import { setAlert } from "./alertAction";
 
 export const fetchAll = () => {
-    return async (dispatch) => {
+    return async (dispatch:any) => {
         try {
             const response = (await fetchApi('note/getAll')).data;
             if(response){
@@ -16,8 +16,8 @@ export const fetchAll = () => {
 }
 
 // Add nNote
-export const addNote = (note) => {
-    return async (dispatch) => {
+export const addNote = (note:any) => {
+    return async (dispatch:any) => {
         try {
             const response = (await fetchApi('note/addNote', 'POST', note)).data;
             if (response.status === 'success') {
@@ -34,8 +34,8 @@ export const addNote = (note) => {
 }
 
 // delete note APIcall
-export const delNote = (id) => {
-    return async (dispatch) => {
+export const delNote = (id:string) => {
+    return async (dispatch:any) => {
         try {
             const response = (await fetchApi(`note/deleteNote/${id}`, 'DELETE')).data;
             if (response.status === 'success') {
@@ -50,8 +50,8 @@ export const delNote = (id) => {
     }
 }
 
-export const editNote = (id, note) => {
-    return async (dispatch) => {
+export const editNote = (id:string, note:any) => {
+    return async (dispatch:any) => {
         try {
             const response = (await fetchApi(`note/updateNote/${id}`, 'PUT', note)).data;
             if (response.status === 'success') {

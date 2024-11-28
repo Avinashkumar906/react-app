@@ -1,8 +1,8 @@
 import fetchApi from "../../http/fetch";
 import { setAlert } from "./alertAction";
 
-export const userLogin = (credentials) => {
-    return async (dispatch) => {
+export const userLogin = (credentials:any) => {
+    return async (dispatch:any) => {
         try {
             const response = (await fetchApi('user/signin','POST',credentials)).data;
             if(response.status === 'success'){
@@ -17,8 +17,8 @@ export const userLogin = (credentials) => {
     }
 }
 
-export const userSignup = (credentials) => {
-    return async (dispatch) => {
+export const userSignup = (credentials:any) => {
+    return async (dispatch:any) => {
         try {
             const response = (await fetchApi('user/signup','POST',credentials)).data;
             if(response.status === 'success'){
@@ -34,7 +34,7 @@ export const userSignup = (credentials) => {
 }
 
 export const userLogout  = () => {
-    return (dispatch) => {
+    return (dispatch:any) => {
         dispatch({type:'LOGOUT'})
     }
 }

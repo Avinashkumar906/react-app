@@ -1,27 +1,25 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addNote, editNote } from '../store/action/noteAction';
-// import noteContext from '../context/note/noteContext'
 
-function AddNote(props) {
+function AddNote(props:any) {
   const { prepopulate } = props;
-  const dispatch = useDispatch();
-  // const { addNote, editNote } = useContext(noteContext)
-  const closeRef = useRef(null)
+  const dispatch = useDispatch<any>();
+  const closeRef = useRef<HTMLButtonElement>(null)
   const [note, setNote] = useState({
     title: prepopulate?.title || '',
     description: prepopulate?.description || '',
     tag: prepopulate?.tag || '',
   });
 
-  const handleChange = (target) => {
+  const handleChange = (target:HTMLInputElement) => {
     setNote({ ...note, [target.name]: target.value })
   }
 
   const onSubmit = () => {
     if (prepopulate){
-      dispatch(editNote(prepopulate._id, note))
-      closeRef.current.click()
+      dispatch(editNote(prepopulate._id, note));
+      (closeRef.current)?.click()
     }
     else{
       dispatch(addNote(note))
@@ -29,7 +27,7 @@ function AddNote(props) {
   }
 
   return (
-    <div className={!prepopulate && 'col-sm-6 col-md-4 col-lg-3 mb-4'}>
+    <div className={!prepopulate ? 'col-sm-6 col-md-4 col-lg-3 mb-4': ''}>
       {/* <h4>{prepopulate?'Update':'Add'} Note</h4> */}
       <div className="card p-2">
         <form className='my-2'>

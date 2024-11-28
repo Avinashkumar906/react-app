@@ -1,12 +1,11 @@
-import React from 'react'
 import { useDispatch } from 'react-redux';
 import { delNote } from '../store/action/noteAction';
 
-function NoteItem(props) {
+function NoteItem(props:any) {
     const { note, updateHandler } = props;
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
 
-    const onDelete = (id) => dispatch(delNote(id))
+    const onDelete = (id:string) => dispatch(delNote(id))
 
     return (
         <div className='col-sm-6 col-md-4 col-lg-3 mb-4'>

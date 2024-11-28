@@ -6,4 +6,5 @@ const initialState = { notes:[] }
 
 const store  = legacy_createStore(reducers,initialState,applyMiddleware(thunk));
 
+export type AppDispatch = typeof store.dispatch
 export default store;
