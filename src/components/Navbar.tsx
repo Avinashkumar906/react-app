@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom'
-import { userLogout } from '../store/action/userAction';
+import { logout } from '../store/slices/userSlice';
+// import { userLogout } from '../store/action/userAction';
 
 
 function Navbar() {
@@ -30,7 +31,7 @@ function Navbar() {
           {
             user?.email ?
               <div className="d-flex">
-                <button type='button' onClick={() => dispatch(userLogout())} className="btn btn-outline-light me-2">Sign out</button>
+                <button type='button' onClick={() => dispatch(logout())} className="btn btn-outline-light me-2">Sign out</button>
               </div> :
               <div className="d-flex">
                 <Link className="btn btn-outline-light me-2" to="/login">Sign In</Link>

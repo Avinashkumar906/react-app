@@ -1,7 +1,8 @@
 import  { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogin, userSignup } from '../store/action/userAction';
+import { login, signup } from '../store/slices/userSlice';
+// import { userLogin, userSignup } from '../store/action/userAction';
 
 const Auth = () => {
   const [credentials, setCredentials] = useState({email:'',password:'',firstName:''});
@@ -16,7 +17,7 @@ const Auth = () => {
 
   const submitForm = async (event:any) =>{
     event.preventDefault();
-    (location.pathname === '/login') ? dispatch(userLogin(credentials)) : dispatch(userSignup(credentials));
+    (location.pathname === '/login') ? dispatch(login(credentials)) : dispatch(signup(credentials));
   }
 
   useEffect(() => {

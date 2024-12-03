@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { delNote } from '../store/action/noteAction';
+import { delNote } from '../store/slices/noteSlice';
 
 function NoteItem(props:any) {
     const { note, updateHandler } = props;

@@ -2,8 +2,7 @@ import axios from "axios";
 
 const baseUrl = 'http://localhost:8081';
 
-const fetchApi = (url:any, method = 'GET', payload = {}) => {
-    console.log(import.meta.env.PROD)
+const fetchApi = (url:string, method:string = 'GET', payload:any = {}) => {
     return axios({
         // baseURL:baseUrl,
         baseURL:(import.meta.env.MODE !== "development" ? window.location.origin : baseUrl),

@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { addNote, editNote } from '../store/action/noteAction';
+import { addNote, editNote } from '../store/slices/noteSlice';
 
-function AddNote(props:any) {
+function AddNote(props: any) {
   const { prepopulate } = props;
   const dispatch = useDispatch<any>();
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -12,22 +12,22 @@ function AddNote(props:any) {
     tag: prepopulate?.tag || '',
   });
 
-  const handleChange = (target:HTMLInputElement) => {
+  const handleChange = (target: HTMLInputElement) => {
     setNote({ ...note, [target.name]: target.value })
   }
 
   const onSubmit = () => {
-    if (prepopulate){
-      dispatch(editNote(prepopulate._id, note));
+    if (prepopulate) {
+      dispatch(editNote({ id: prepopulate._id, note }));
       (closeRef.current)?.click()
     }
-    else{
+    else {
       dispatch(addNote(note))
     }
   }
 
   return (
-    <div className={!prepopulate ? 'col-sm-6 col-md-4 col-lg-3 mb-4': ''}>
+    <div className={!prepopulate ? 'col-sm-6 col-md-4 col-lg-3 mb-4' : ''}>
       {/* <h4>{prepopulate?'Update':'Add'} Note</h4> */}
       <div className="card p-2">
         <form className='my-2'>
@@ -45,8 +45,8 @@ function AddNote(props:any) {
             <input value={note.tag} type="text" onChange={(event) => handleChange(event.target)} className="form-control" id="tag" name="tag" />
           </div>
           <div className='text-center pt-2'>
-            <button type="button" ref={ closeRef } className="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
-            <button type="button" className="btn btn-success px-4" onClick={onSubmit}>{prepopulate?'Update':' Add '} </button>
+            <button type="button" ref={closeRef} className="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-success px-4" onClick={onSubmit}>{prepopulate ? 'Update' : ' Add '} </button>
           </div>
         </form>
       </div>

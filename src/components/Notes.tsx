@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import NoteItem from './NoteItem';
 import NoteModal from './NoteModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAll } from '../store/action/noteAction';
+import { fetchAll } from '../store/slices/noteSlice';
+// import { fetchAll } from '../store/action/noteAction';
 
 function Notes() {
   const dispatch = useDispatch<any>();
-  const notes = useSelector((state:any) => state.notes);
+  const notes = useSelector((state:any) => state.note);
 
   const [editNote, setEditNote] = useState(null)
   const modalButton = useRef<HTMLButtonElement>(null)
@@ -31,7 +32,7 @@ function Notes() {
           </div>
         </div>
       }
-      { notes.length && notes.map((note:any,index:number) =>
+      { notes && notes.map((note:any,index:number) =>
         <NoteItem key={note._id + index} note={note} updateHandler={updateHandler} />
       )}
       <button ref={modalButton} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
