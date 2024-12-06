@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { removeAlert } from '../store/action/alertAction';
+import { removeAlert } from '../store/slices/alertSlice';
 
 function Alert() {
   const dispatch = useDispatch<any>()

@@ -3,7 +3,6 @@ import NoteItem from './NoteItem';
 import NoteModal from './NoteModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAll } from '../store/slices/noteSlice';
-// import { fetchAll } from '../store/action/noteAction';
 
 function Notes() {
   const dispatch = useDispatch<any>();

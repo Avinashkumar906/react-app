@@ -1,6 +1,7 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk, GetThunkAPI } from "@reduxjs/toolkit";
 import { USER, USER_DETAIL } from "../../types/types";
 import fetchApi from "../../http/fetch";
+import { setAlert } from "./alertSlice";
 
 const initialState:USER = {
     token:localStorage.getItem('token') || '',
@@ -14,12 +15,30 @@ function getUser(){
     catch (error) { return undefined }
 }
 
-export const login = createAsyncThunk('user/login', async(credentials:USER_DETAIL) => {
-    return (await fetchApi('user/signin','POST',credentials)).data;
+export const login = createAsyncThunk('user/login', async(credentials:USER_DETAIL,thunkApi:GetThunkAPI<any>) => {
+    try {
+        let response = (await fetchApi('user/signin','POST',credentials));
+        if(response.status === 200){
+            thunkApi.dispatch(setAlert({'type':'success','message':'User loggedin successfully!'}))
+            return response.data;
+        }
+    } catch (error) {
+        thunkApi.dispatch(setAlert({'type':'danger','message':'Please use correct credentials!'}))
+        return {token:''}
+    }
 })
 
-export const signup = createAsyncThunk('user/signup', async(credentials:USER_DETAIL) => {
-    return (await fetchApi('user/signup','POST',credentials)).data;
+export const signup = createAsyncThunk('user/signup', async(credentials:USER_DETAIL,thunkApi:GetThunkAPI<any>) => {
+    try {
+        let response =  (await fetchApi('user/signup','POST',credentials));
+        if(response.status === 200){
+            thunkApi.dispatch(setAlert({'type':'success','message':'User registered successfully!'}))
+            return response.data;
+        }
+    } catch (error) {
+        thunkApi.dispatch(setAlert({'type':'danger','message':'Please try again!'}))
+        return {token:''}
+    }
 })
 
 const userSlice = createSlice({
